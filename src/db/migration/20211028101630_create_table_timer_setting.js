@@ -1,19 +1,23 @@
-const tableName = "settings";
+const tableName = "timer_setting"
 exports.up = async function(knex) {
+  
   if (!(await knex.schema.hasTable(tableName))) {
 		await knex.schema.createTable(`${tableName}`, (table) => {
 			table.uuid("id").primary().defaultTo(knex.raw(`uuid_generate_v4()`));
-      table.uuid("post_id").notNullable().references("posts.id");
-			table.uuid("account_id").notNullable().references("accounts.id");
+      table.uuid("setting_id").notNullable().references("settings.id");
 
-			// table.enum("create_type", ["create_only", "create_and_post"]).notNullable();
-			// table.string("timer_setting").notNullable();
+      table.string("timer_at").nullable();
+      table.timestamp("from_date").nullable();
+      table.timestamp("to_date").nullable();
 
+      table.boolean("is_deleted").defaultTo(false);
+      
 			table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
 			table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
 
 		});
 	}
+
 };
 
 exports.down = async function(knex) {

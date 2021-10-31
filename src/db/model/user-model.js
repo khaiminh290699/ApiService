@@ -1,7 +1,7 @@
 const Model = require(".");
 
-class UsertModel extends Model {
+class ModelUser extends Model {
   tableName = "users";
 }
 
-module.exports = UsertModel;
+module.exports = ModelUser;

@@ -1,11 +1,20 @@
-const { DB, UserModel } = require("../db");
+const { DB, ModelUser } = require("../db");
 const { crypto } = require("../ultilities");
 
 const publicApi = {
   "/auth/login": 1
 }
 
+const adminApi = {
+  "/auth/users": 255,
+  "/auth/reset-password": 255,
+  "/auth/set-permission": 255,
+  "/auth/sign-in": 255,
+  "/auth/toggle-activate": 255
+}
+
 const authorize = async (req, res, next) => {
+
   if (publicApi[req.originalUrl]) {
     return next();
   }
@@ -27,28 +36,34 @@ const authorize = async (req, res, next) => {
   }
 
   const db = new DB();
-  const userModel = new UserModel(db);
-  const user = await userModel.findOne({ id: payload.id });
+
+  try {
   
-  if (!user) {
-    return res.send({ status: 403, message: "UnauthorizeError" });
+    const modelUser = new ModelUser(db);
+    const user = await modelUser.findOne({ id: payload.id });
+    
+    if (!user) {
+      return res.send({ status: 403, message: "UnauthorizeError" });
+    }
+  
+    if (!user.is_activated) {
+      return res.send({ status: 403, message: "UnauthorizeError" });
+    }
+  
+    if (user.permission >= 256) {
+      user.isAdmin = true;
+    }
+  
+    if (adminApi[req.originalUrl] && adminApi[req.originalUrl] > user.permission) {
+      return res.send({ status: 403, message: "PermissionError" });
+    }
+  
+    req.user = user;
+  
+    return next();
+  } finally {
+    await db.DB.destroy();
   }
-
-  if (!user.is_activated) {
-    return res.send({ status: 403, message: "UnauthorizeError" });
-  }
-
-  if (user.permission >= 256) {
-    user.isAdmin = true;
-  }
-
-  // if (api[req.originalUrl].permission && api[req.originalUrl].permission > user.permission) {
-  //   return res.send({ status: 403, message: "PermissionError" });
-  // }
-
-  req.user = user;
-
-  return next();
 }
 
 module.exports = authorize;

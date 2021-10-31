@@ -8,8 +8,7 @@ exports.up = async function(knex) {
       table.string("type").notNullable().defaultTo("posting")
       table.specificType("progressing_amount", "double precision").notNullable();
       table.specificType("progressing_total", "double precision").notNullable();
-      table.enum("status", ["success", "fail", "waiting", "progressing" ]).notNullable().defaultTo("waiting");
-
+      table.enum("status", ["success", "fail", "waiting", "progressing", "removed" ]).notNullable().defaultTo("waiting");
       
 			table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
 			table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());

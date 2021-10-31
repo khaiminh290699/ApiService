@@ -95,6 +95,10 @@ class Kafka {
           numPartitions: 1
         },
         {
+          topic: "account.get",
+          numPartitions: 1
+        },
+        {
           topic: "account.list",
           numPartitions: 1
         },
@@ -108,6 +112,10 @@ class Kafka {
         },
         {
           topic: "post.progressing.reprogress",
+          numPartitions: 1
+        },
+        {
+          topic: "post.progressing.cancel",
           numPartitions: 1
         },
         {
@@ -125,7 +133,23 @@ class Kafka {
         {
           topic: "auth.updateInfo",
           numPartitions: 1
-        }
+        },
+        {
+          topic: "auth.user.list",
+          numPartitions: 1
+        },
+        {
+          topic: "auth.reset",
+          numPartitions: 1
+        },
+        {
+          topic: "auth.permission",
+          numPartitions: 1
+        },
+        {
+          topic: "auth.toggle",
+          numPartitions: 1
+        },
       ]
     })
     await admin.disconnect();

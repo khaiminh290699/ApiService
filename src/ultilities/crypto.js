@@ -2,8 +2,8 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 module.exports = {
-  hash: async () => {
-    return await bcryptjs.hash(str, process.env.PRIVATE_KEY);
+  hash: async (str) => {
+    return await bcryptjs.hash(str, 10);
   },
 
   compare: async (str, hash) => {

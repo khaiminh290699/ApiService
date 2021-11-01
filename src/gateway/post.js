@@ -29,5 +29,19 @@ router.post("/toggle", async (req, res) => {
   return res.send(await kafka.rpc("post.toggle", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
 })
 
+router.post("/backlink/create", async (req, res) => {
+  const { id: user_id } = req.user;
+  return res.send(await kafka.rpc("post.backlink.create", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
+router.post("/backlink/delete", async (req, res) => {
+  const { id: user_id } = req.user;
+  return res.send(await kafka.rpc("post.backlink.delete", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
+router.post("/backlink/get", async (req, res) => {
+  return res.send(await kafka.rpc("post.backlink.get", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
 
 module.exports = router;

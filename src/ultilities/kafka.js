@@ -123,6 +123,18 @@ class Kafka {
           numPartitions: 1
         },
         {
+          topic: "post.backlink.create",
+          numPartitions: 1
+        },
+        {
+          topic: "post.backlink.delete",
+          numPartitions: 1
+        },
+        {
+          topic: "post.backlink.get",
+          numPartitions: 1
+        },
+        {
           topic: "auth.signIn",
           numPartitions: 1
         },

@@ -7,8 +7,11 @@ exports.up = async function(knex) {
 
       table.uuid("backlink_id").notNullable().references("backlinks.id");
 
-      table.uuid("account_id").notNullable().references("accounts.id");
+      table.uuid("post_id").notNullable().references("posts.id");
       table.uuid("forum_id").notNullable().references("forums.id");
+      table.uuid("setting_id").notNullable().references("settings.id");
+      
+      table.string("timer_at").nullable();
       
 			table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
 			table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());

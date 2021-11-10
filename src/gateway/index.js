@@ -7,6 +7,7 @@ const account = require("./account")
 const search = require("./search")
 const file = require("./file")
 const progressing = require("./progressing");
+const statistic = require("./statistic");
 
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.use("/account", account);
 router.use("/search", search);
 router.use("/file", file);
 router.use("/progressing", progressing);
+router.use("/statistic", statistic);
 
 module.exports = router;

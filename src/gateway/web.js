@@ -14,9 +14,15 @@ router.post("/forums", async (req, res) => {
 
 router.post("/get-community", async (req, res) => {
   const { id: user_id } = req.user;
-  const responseKey = `${user_id}_${new Date().getTime()}`
-  await kafka.produce("web.getCommunity", null, { params: { ...req.body, ...req.params, responseKey }, meta: { user: req.user } });
-  return res.send({ status: 200, data: { responseKey } });
+  return res.send(await kafka.rpc("web.getCommunity", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
+router.post("/upsert", async (req, res) => {
+  return res.send(await kafka.rpc("web.upsert", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
+router.get("/:id", async (req, res) => {
+  return res.send(await kafka.rpc("web.getOne", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
 })
 
 module.exports = router;

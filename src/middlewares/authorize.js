@@ -2,7 +2,7 @@ const { DB, ModelUser } = require("../db");
 const { crypto } = require("../ultilities");
 
 const publicApi = {
-  "/auth/login": 1
+  "/auth/log-in": 1
 }
 
 const adminApi = {

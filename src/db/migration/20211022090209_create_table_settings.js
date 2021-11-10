@@ -9,6 +9,8 @@ exports.up = async function(knex) {
 			// table.enum("create_type", ["create_only", "create_and_post"]).notNullable();
 			// table.string("timer_setting").notNullable();
 
+			table.boolean("is_create_only").defaultTo(false)
+
 			table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
 			table.timestamp("updated_at").notNullable().defaultTo(knex.fn.now());
 

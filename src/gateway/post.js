@@ -19,6 +19,11 @@ router.post("/create", async (req, res) => {
   return res.send(await kafka.rpc("post.create", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
 })
 
+router.post("/update", async (req, res) => {
+  const { id: user_id } = req.user;
+  return res.send(await kafka.rpc("post.update", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+})
+
 router.post("/list-timer", async (req, res) => {
   const { id: user_id } = req.user;
   return res.send(await kafka.rpc("post.list.timer", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));

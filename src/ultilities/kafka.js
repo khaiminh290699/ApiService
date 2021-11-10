@@ -75,6 +75,10 @@ class Kafka {
           numPartitions: 1
         },
         {
+          topic: "web.getOne",
+          numPartitions: 1
+        },
+        {
           topic: "web.list",
           numPartitions: 1
         },
@@ -83,7 +87,7 @@ class Kafka {
           numPartitions: 1
         },
         {
-          topic: "web.create",
+          topic: "web.upsert",
           numPartitions: 1
         },
         {
@@ -162,6 +166,14 @@ class Kafka {
           topic: "auth.toggle",
           numPartitions: 1
         },
+        {
+          topic: "statistic.getInTime",
+          numPartitions: 1
+        },
+        {
+          topic: "statistic.getTotal",
+          numPartitions: 1
+        }
       ]
     })
     await admin.disconnect();

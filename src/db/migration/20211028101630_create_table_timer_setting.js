@@ -5,6 +5,7 @@ exports.up = async function(knex) {
 		await knex.schema.createTable(`${tableName}`, (table) => {
 			table.uuid("id").primary().defaultTo(knex.raw(`uuid_generate_v4()`));
       table.uuid("setting_id").notNullable().references("settings.id");
+      table.uuid("forum_id").notNullable().references("forums.id");
 
       table.string("timer_at").nullable();
       table.timestamp("from_date").nullable();

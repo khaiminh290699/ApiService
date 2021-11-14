@@ -13,5 +13,15 @@ router.post("/get-total", async (req, res) => {
 
 })
 
+router.post("/get-top-post-forum", async (req, res) => {
+  return res.send(await kafka.rpc("statistic.topPostForum", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+
+})
+
+router.post("/get-top-click-forum", async (req, res) => {
+  return res.send(await kafka.rpc("statistic.topClickForum", null, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
+
+})
+
 
 module.exports = router;

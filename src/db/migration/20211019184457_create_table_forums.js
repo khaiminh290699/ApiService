@@ -6,7 +6,7 @@ exports.up = async function(knex) {
 			table.uuid("web_id").notNullable().references("webs.id");
 		
       table.string("forum_name").notNullable();
-      table.string("forum_url").nullable().unique();
+      table.string("forum_url").nullable();
 
 			table.boolean("is_deleted").defaultTo(false);
 

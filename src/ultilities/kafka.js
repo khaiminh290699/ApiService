@@ -173,6 +173,14 @@ class Kafka {
         {
           topic: "statistic.getTotal",
           numPartitions: 1
+        },
+        {
+          topic: "statistic.topClickForum",
+          numPartitions: 1
+        },
+        {
+          topic: "statistic.topPostForum",
+          numPartitions: 1
         }
       ]
     })

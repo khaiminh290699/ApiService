@@ -9,6 +9,16 @@ router.post("/list", async (req, res) => {
   return res.send(await kafka.rpc("account.list", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user } }));
 })
 
+router.post("/create", async (req, res) => {
+  const { id: user_id } = req.user;
+  return res.send(await kafka.rpc("account.create", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user }  }));
+})
+
+router.post("/update", async (req, res) => {
+  const { id: user_id } = req.user;
+  return res.send(await kafka.rpc("account.update", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user }  }));
+})
+
 router.post("/upsert", async (req, res) => {
   const { id: user_id } = req.user;
   return res.send(await kafka.rpc("account.upsert", user_id, { params: { ...req.body, ...req.params }, meta: { user: req.user }  }));

@@ -107,6 +107,14 @@ class Kafka {
           numPartitions: 1
         },
         {
+          topic: "account.create",
+          numPartitions: 1
+        },
+        {
+          topic: "account.update",
+          numPartitions: 1
+        },
+        {
           topic: "account.toogle",
           numPartitions: 1
         },

@@ -11,7 +11,7 @@ exports.up = async function(knex) {
 			table.string("tag").nullable();
 			table.string("text").nullable();
 
-      table.enum("action", ["click", "input", "find"])
+      table.enum("action", ["click", "input", "find", "not_found"])
       table.enum("input", ["username", "password", "title", "content"]);
       table.integer("number").nullable();
 

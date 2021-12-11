@@ -9,7 +9,7 @@ exports.up = async function(knex) {
       // table.enum("posting_type", ["create_post", "timer_post"]).defaultTo("create_post");
       table.boolean("is_timer").defaultTo(false);
       table.enum("status", ["success", "fail", "waiting"]).notNullable().defaultTo("waiting");
-      table.string("message").nullable();
+      table.text("message").nullable();
 
       
 			table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());

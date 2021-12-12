@@ -18,6 +18,7 @@ app.use(gateway);
 app.listen(process.env.PORT || 8080, async () => {
   const db = await new DB()
   await db.DB.migrate.latest();
+  await db.DB.destroy();
   await new Kafka().setup();
   console.log(`Server is running on port ${process.env.PORT || 8080}`);
 })

@@ -39,7 +39,7 @@ const authorize = async (req, res, next) => {
 
   try {
   
-    const modelUser = new ModelUser(db);
+    const modelUser = new ModelUser(db.DB);
     const user = await modelUser.findOne({ id: payload.id });
     
     if (!user) {
